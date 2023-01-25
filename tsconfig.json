@@ -1,0 +1,3 @@
+{
+  "extends": "./node_modules/wcwc/usr/tsconfig.preset.json"
+}

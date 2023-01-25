@@ -1,0 +1,15 @@
+{
+  "name": "wcwc-ds",
+  "version": "1.0.0",
+  "description": "WCWC Design System ",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rimraf --sync ./lib",
+    "serve": "npx live-server . --cors --host=localhost",
+    "dev": "npm run clear && webpack --watch --mode=development",
+    "build": "npm run clear && webpack --mode=production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
