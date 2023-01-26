@@ -1,1 +1,1 @@
-module.exports = require('wcwc/usr/webpack.preset.js');
+module.exports = require('wcwc/usr/config/webpack.preset.js')();

@@ -1,3 +1,9 @@
-{
-  "extends": "./node_modules/wcwc/usr/tsconfig.preset.json"
+{  
+  "extends": "./node_modules/wcwc/usr/config/tsconfig.preset.json",
+  "include": [ "components/**/*" ],
+  "exclude": ["node_modules", "*.scss"],
+  "compilerOptions": {
+    "declarationDir": "lib/d.ts/",
+    "outDir": "lib"  
+  }
 }
