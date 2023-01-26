@@ -1,6 +1,8 @@
 import { h, WC, Fragment } from 'wcwc';
+import style from './style.scss';
 
 class Counter extends WC {
+  static styles = [ style ];
   static attrs = [ 'start' ];
 
   data: { count: number } = this.$({
@@ -20,7 +22,7 @@ class Counter extends WC {
           Inc
         </button>
 
-        { this.props.children }      
+        { this.props.children }   
       </>
     )
   }

@@ -1,1 +1,1 @@
-{"version":3,"file":"counter.d.ts","sourceRoot":"","sources":["../../components/counter.tsx"],"names":[],"mappings":""}
+{"version":3,"file":"counter.d.ts","sourceRoot":"","sources":["../../components/counter/counter.tsx"],"names":[],"mappings":""}

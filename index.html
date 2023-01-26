@@ -32,21 +32,8 @@
   </my-custom-element>
 
   <script type="module">
-    import './lib/index.js'
-
-    class Counter extends WC {
-      static attrs = [ 'start' ];
-
-      data = this.$({
-        count: this.props.start || 0
-      });
-
-      render() {
-        return 'hello'
-      }
-    }
-
-    Counter.expose('my-custom-element');
+    import './node_modules/wcwc/lib/index.js'
+    import './lib/counter/counter.js'
   </script>
 </body>
 </html>
