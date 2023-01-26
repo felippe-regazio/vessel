@@ -1,4 +1,4 @@
-import { h, WC, Fragment } from 'wcwc';
+import { WC } from 'wcwc';
 import style from './style.scss';
 
 class Counter extends WC {
