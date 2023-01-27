@@ -4,7 +4,7 @@
   "description": "Open Source Design System ",
   "scripts": {
     "clear": "rimraf --sync ./lib",
-    "serve": "npx live-server . --cors --host=localhost",
+    "serve": "live-server . --cors --host=localhost",
     "dev": "npm run clear && webpack --watch --mode=development",
     "build": "npm run clear && webpack --mode=production"
   },
@@ -14,6 +14,7 @@
   "devDependencies": {
     "css-loader": "^6.7.3",
     "glob": "^8.0.3",
+    "live-server": "^1.2.2",
     "rimraf": "^3.0.2",
     "sass": "^1.22.10",
     "sass-loader": "^13.2.0",
