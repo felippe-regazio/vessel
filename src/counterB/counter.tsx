@@ -1,17 +1,17 @@
 import { WC } from 'wcwc';
 import style from './style.scss';
 
-class Counter extends WC {
-  static $styles = [ style ];
-  
-  data: { count: number } = this.$({
+class CounterB extends WC {
+  static styles = [ style ];
+
+  data: { count: number } = this.set({
     count: this.props.start || 0
   });
 
   render() {
     return (
       <>
-        <h1>{this.data.count}</h1>
+        <h1>COUNTER B: {this.data.count}</h1>
 
         <button onclick={() => this.data.count--}>
           Dec
@@ -27,9 +27,9 @@ class Counter extends WC {
   }
 }
 
-Counter.expose('my-custom-element', {
+CounterB.expose('my-custom-element-b', {
   shadow: { mode: 'open' },
-  
+
   props: {
     start: {
       default: 40
