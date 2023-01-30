@@ -1,7 +1,7 @@
 {
-  "name": "open-ds",
+  "name": "vessel",
   "version": "1.0.0",
-  "description": "Open Source Design System ",
+  "description": "Open Source Web Components Collection",
   "scripts": {
     "clear": "rimraf --sync ./lib",
     "serve": "live-server . --cors --host=localhost",

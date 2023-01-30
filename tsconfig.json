@@ -1,9 +1,28 @@
-{  
-  "extends": "./node_modules/wcwc/usr/config/tsconfig.preset.json",
+{
   "include": [ "src/**/*", "globals.d.ts" ],
   "exclude": ["node_modules", "*.scss"],
   "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
     "declarationDir": "lib/d.ts/",
-    "outDir": "lib"  
+    "outDir": "lib",    
+    "module": "CommonJS",
+    "target": "ES2015",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": [ "es5", "dom" ],
+    "jsx": "react",
+    "jsxFactory": "WC.h",
+    "jsxFragmentFactory": "WC.f",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true    
   }
 }

@@ -1,0 +1,20 @@
+wc-badge {
+  &, * {
+    box-sizing: border-box;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit sans-serif;
+  font-size: 1ch;
+  
+  background-color: var(--wc-attr-bg, #eee);
+  width: var(--wc-attr-size, 20px);
+  height: var(--wc-attr-size, 20px);
+
+  &:not([shape]), &[shape=round] {
+    border-radius: 100%;
+    padding: 0;
+  }
+}
