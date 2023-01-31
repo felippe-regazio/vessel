@@ -3,18 +3,23 @@ wc-badge {
     box-sizing: border-box;
   }
 
-  display: flex;
+  display: inline-flex;
+  border-radius: 100%;
+  padding: 0;
   align-items: center;
   justify-content: center;
   font-family: inherit sans-serif;
-  font-size: 1ch;
-  
-  background-color: var(--wc-attr-bg, #eee);
-  width: var(--wc-attr-size, 20px);
-  height: var(--wc-attr-size, 20px);
+  border-radius: 25px;
+  line-height: 0;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 100ms ease-out;
 
-  &:not([shape]), &[shape=round] {
-    border-radius: 100%;
-    padding: 0;
+  &[hidden] {
+    opacity: 0;
+    transition: 100ms ease-in;
+    visibility: hidden;
+    transform: scale(0);
   }
 }

@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const { ProvidePlugin } = require("webpack");
 
 module.exports = (_env, argv) => {
   const { mode } = argv;
@@ -52,6 +53,11 @@ module.exports = (_env, argv) => {
           },
         ]
       },
+      plugins: [
+        new ProvidePlugin({ 
+          WC: [ 'wcwc', 'WC' ] 
+        })
+      ],
       output: {
         filename: '[name].js',
         chunkFilename: `${name}.[chunkhash].js`,

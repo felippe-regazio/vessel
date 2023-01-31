@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/68170589/do-html-elements-like-pill-badge-need-extra-aria-role

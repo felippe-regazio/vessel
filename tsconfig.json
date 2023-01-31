@@ -1,5 +1,5 @@
 {
-  "include": [ "src/**/*", "globals.d.ts" ],
+  "include": [ "src/**/*", "types" ],
   "exclude": ["node_modules", "*.scss"],
   "compilerOptions": {
     "noEmit": false,
@@ -12,6 +12,7 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "removeComments": true,
+    "allowUmdGlobalAccess": true,
     "allowUnreachableCode": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
