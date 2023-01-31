@@ -5,9 +5,11 @@ class WCChip extends WC {
   static styles = [ style ];
   
   render() {
-    return <>
-      <CloseIcon/>
-    </>
+    return (
+      <>
+        <CloseIcon/>
+      </>
+    )
   }
 }
 
