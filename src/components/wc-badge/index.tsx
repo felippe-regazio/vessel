@@ -22,6 +22,10 @@ class WCBadge extends WC {
     });
   }
 
+  onAttrChange(name: string, oldv: any, newv: any): void {
+    console.log(name, oldv, newv);
+  }
+
   render() {
     this.updateLocalStyle();
     return this.props.children;
