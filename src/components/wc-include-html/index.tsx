@@ -24,7 +24,7 @@ class WCIncludeHTML extends WC {
           ? response.text() 
           : Promise.reject(new Error(`Failed to include HTML from "${src}". Error: ${response.statusText}`))
       })
-      .catch(console.error)
+      .catch(console.error);
   }
 
   /**

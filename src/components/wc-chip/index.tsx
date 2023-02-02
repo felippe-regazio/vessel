@@ -1,5 +1,5 @@
 import style from './style.scss';
-import CloseIcon from '../../partials/icons/CloseIcon';
+// import CloseIcon from '../../partials/icons/CloseIcon';
 
 class WCChip extends WC {
   static styles = [ style ];
@@ -7,7 +7,7 @@ class WCChip extends WC {
   render() {
     return (
       <>
-        <CloseIcon/>
+        a
       </>
     )
   }

@@ -1,6 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const { ProvidePlugin } = require("webpack");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (_env, argv) => {
   const { mode } = argv;
@@ -68,9 +69,8 @@ module.exports = (_env, argv) => {
         }
       },
       optimization: {
-        splitChunks: {
-          chunks: 'async'
-        }
+        minimize: true,
+        minimizer: [ new TerserPlugin() ]    
       },
       externals: 'wcwc'
     }

@@ -7,19 +7,20 @@
   <title>Document</title>
 </head>
 <body>
-  <p style="position: relative; display: inline-block">
-    This is a badge
-    <wc-badge top="-10px" right="-20px">1</wc-badge>
-  </p>
-
-  <wc-chip top="-10px" right="-20px"></wc-chip>
-  <wc-include-html src="/docs/test.html"></wc-include-html>
-  
   <script type="module">
     import './node_modules/wcwc/lib/index.js'
     import './lib/wc-badge/index.js'
     import './lib/wc-chip/index.js'
     import './lib/wc-include-html/index.js'
   </script>
+    
+  <p style="position: relative; display: inline-block">
+    This is a badge
+    <wc-badge top="-10px" right="-20px">1</wc-badge>
+  </p>
+
+  <div>
+    <wc-chip top="-10px" right="-20px"></wc-chip>
+  </div>
 </body>
 </html>
