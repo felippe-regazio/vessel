@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const { ProvidePlugin } = require("webpack");
 const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = (_env, argv) => {
   const { mode } = argv;
@@ -70,7 +71,11 @@ module.exports = (_env, argv) => {
       },
       optimization: {
         minimize: true,
-        minimizer: [ new TerserPlugin() ]    
+        minimizer: [ 
+          new TerserPlugin(),
+          `...`,
+          new CssMinimizerPlugin(),
+        ]
       },
       externals: 'wcwc'
     }
