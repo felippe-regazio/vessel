@@ -1,0 +1,24 @@
+wc-chip {
+  &, * {
+    box-sizing: border-box;
+  }
+
+  display: inline-flex;
+  padding: 4px 12px;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  border-radius: 25px;
+  font-size: 1rem;
+  opacity: 1;
+  visibility: visible;
+  color: #444;
+  transition: transform 100ms ease-out;
+  background-color: #eeeeee;
+
+  &[hidden] {
+    opacity: 0;
+    visibility: hidden;
+    transition: 100ms ease-in;
+  }
+}

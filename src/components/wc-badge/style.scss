@@ -4,16 +4,16 @@ wc-badge {
   }
 
   display: inline-flex;
-  border-radius: 100%;
   padding: 0;
   align-items: center;
   justify-content: center;
-  font-family: inherit sans-serif;
+  font-family: sans-serif;
   border-radius: 25px;
   line-height: 0;
   visibility: visible;
   opacity: 1;
   transform: scale(1);
+  color: #444;
   transition: transform 100ms ease-out;
 
   &[hidden] {
