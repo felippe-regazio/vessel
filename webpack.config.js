@@ -19,7 +19,7 @@ module.exports = (_env, argv) => {
   return MODULES_LIST.map((m) => {
     const { name, dir } = path.parse(m);
     const dest_dir = path.relative(src, dir);
-    
+
     const M_CONFIG = {
       mode,
       target: 'web',

@@ -24,6 +24,7 @@ class WCBadge extends WC {
 
   render() {
     this.updateLocalStyle();
+
     return this.props.children;
   }
 }
@@ -31,8 +32,8 @@ class WCBadge extends WC {
 WCBadge.expose('wc-badge', {
   props: {
     bg: { default: '#eeeeee' },
-    size: { default: '20px' },
     color: { default: '#444444' },
+    size: { default: '20px' },
     top: { default: '' },
     left: { default: '' },
     bottom: { default: '' },
