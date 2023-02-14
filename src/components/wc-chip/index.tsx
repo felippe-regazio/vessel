@@ -3,26 +3,13 @@ import style from './style.scss';
 class WCChip extends WC {
   static styles = [ style ];
 
-  updateLocalStyle() {
-    Object.assign(this.$el.style, {
-      color: this.props.color,
-      backgroundColor: this.props.bg
-    });
-  }
-
   render() {
-    this.updateLocalStyle();
-
     return this.props.children;
   }
 }
 
 WCChip.expose('wc-chip', {
-  props: {
-    bg: { default: '#eeeeee' },
-    color: { default: '#444444' },
-    size: { default: '20px', css: true }
-  }
+  props: { size: { default: '20px', css: true } }
 });
 
 // -------- label --------
