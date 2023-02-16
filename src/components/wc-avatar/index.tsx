@@ -14,13 +14,9 @@ class WCAvatar extends WC {
       <>
         { this.props.children }
 
-        { this.props.src && 
-            <img src={this.props.src} alt={this.props.alt || ''} /> 
-        }
+        { this.props.src && <img src={this.props.src} alt={this.props.alt || ''} /> }
 
-        { this.props.initials && 
-            <span> { this.getLetters() } </span> 
-        }      
+        { this.props.initials && <span> { this.getLetters() } </span> }      
       </>
     )
   }
