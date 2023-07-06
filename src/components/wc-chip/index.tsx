@@ -9,7 +9,9 @@ class WCChip extends WC {
 }
 
 WCChip.expose('wc-chip', {
-  props: { size: { default: '20px', css: true } }
+  props: [
+    { name: 'size', default: '12px', css: true }
+  ]
 });
 
 // -------- label --------

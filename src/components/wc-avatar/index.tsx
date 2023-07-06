@@ -23,11 +23,11 @@ class WCAvatar extends WC {
 }
 
 WCAvatar.expose('wc-avatar', {
-  props: {
-    src: {},
-    alt: {},
-    initials: {},
-    'initials-count': {},
-    size: { default: '40px', css: true }
-  }
+  props: [
+    'src',
+    'alt',
+    'initials',
+    'initials-count',
+    { name: 'size', default: '40px', css: true }
+  ]
 });

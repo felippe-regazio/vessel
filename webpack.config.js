@@ -20,7 +20,7 @@ module.exports = (_env, argv) => {
     const { name, dir } = path.parse(m);
     const dest_dir = path.relative(src, dir);
 
-    const M_CONFIG = {
+    const CONFIG = {
       mode,
       target: 'web',
       entry: {
@@ -73,7 +73,6 @@ module.exports = (_env, argv) => {
         minimize: true,
         minimizer: [ 
           new TerserPlugin(),
-          `...`,
           new CssMinimizerPlugin(),
         ]
       },
@@ -81,9 +80,9 @@ module.exports = (_env, argv) => {
     }
 
     if (mode === 'development') {
-      M_CONFIG.devtool = 'source-map';
+      CONFIG.devtool = 'source-map';
     }
     
-    return M_CONFIG;
+    return CONFIG;
   });
 }

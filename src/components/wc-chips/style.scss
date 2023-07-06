@@ -1,5 +1,10 @@
 wc-chips {
-  display: flex;
   gap: 8px;
+  display: flex;
+  padding: 4px 0;
   flex-wrap: wrap;
+
+  wc-chip {
+    --wc-chip-size: var(--wc-chips-size) !important;
+  }
 }

@@ -30,13 +30,13 @@ class WCBadge extends WC {
 }
 
 WCBadge.expose('wc-badge', {
-  props: {
-    bg: { default: '#eeeeee' },
-    color: { default: '#444444' },
-    size: { default: '20px' },
-    top: { default: '' },
-    left: { default: '' },
-    bottom: { default: '' },
-    right: { default: '' }
-  }
+  props: [
+    'top',
+    'left',
+    'bottom',
+    'right',
+    { name: 'bg', default: '#eeeeee' },
+    { name: 'color', default: '#444444' },
+    { name: 'size', default: '20px' },
+  ]
 });

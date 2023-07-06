@@ -11,10 +11,10 @@ wc-chip {
   border-radius: 25px;
   opacity: 1;
   visibility: visible;
-  color: auto;
+  color: inherit;
   background-color: #eeeeee;
   transition: transform 100ms ease-out;
-  font-size: calc(var(--wc-attr-size) / 1.4);
+  font-size: var(--wc-chip-size);
 
   > wc-chip-label {
     margin: 0 8px;
@@ -43,9 +43,9 @@ wc-chip-action {
   color: #444;
   background-color: rgba(100, 100, 100, .3);
   position: relative;
-  height: var(--wc-attr-size);
-  width: var(--wc-attr-size);
   transition: 150ms;
+  height: calc(var(--wc-chip-size) + 2px);
+  width: calc(var(--wc-chip-size) + 2px);
 
   &:not(:last-child) {
     margin-right: 4px;
