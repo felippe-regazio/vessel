@@ -4,7 +4,7 @@
   "description": "Open Source Web Components Collection",
   "scripts": {
     "clear": "rimraf --sync ./lib",
-    "serve": "live-server . --cors --host=localhost",
+    "serve": "live-server .. --cors --host=localhost",
     "dev": "npm run clear && webpack --watch --mode=development",
     "build": "npm run clear && webpack --mode=production"
   },
