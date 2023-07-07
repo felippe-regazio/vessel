@@ -11,6 +11,6 @@ class WCChips extends WC {
 
 WCChips.expose('wc-chips', {
   props: [
-    { name: 'size', default: '12px', css: true }
+    { name: 'size', initial: '12px', css: true }
   ]
 });

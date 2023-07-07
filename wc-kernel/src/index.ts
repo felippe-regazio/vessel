@@ -2,24 +2,13 @@ import { h, Fragment } from './jsx';
 import { _render } from './renderer';
 import { defineAsCustomElement } from './expose';
 
-/**
- * This class defines a Component. This is not the web component itself,
- * but the entire Component API that is used to build the whole lifecycle
- * and features to build everything that a WC can render. This will be what
- * a Vanilla Web Component will be binded to. this class controls all the 
- * render process, data flow and reactivity inside the web component. This 
- * is the Web Component Bridge. It has all the features of the Component Class 
- * an the Expose method, responsible to wrap our WC classe-based components 
- * into a real Vanilla Web component and bind all the data and lifecycle callbacks. 
- * The import of { WC } must be idealy deduplicated using your prefered bundler.
- */
 export class WC<P extends Object = any> {
   static h: typeof h = h;
   static f: typeof Fragment = Fragment;
 
   public props: P;
   public $el: HTMLElement;
-  static styles?: StaticStyle[];
+  static style?: StaticStyle[];
   public static isWCWCClass = true;
 
   constructor(props: P) {

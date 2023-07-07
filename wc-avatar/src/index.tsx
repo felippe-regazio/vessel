@@ -1,7 +1,7 @@
 import style from './style.scss';
 
 class WCAvatar extends WC {
-  static styles = [ style ];
+  static style = [ style ];
 
   getLetters(): string {
     const initials = this.props.initials.split(' ').map((word: string) => word.substring(0, 1));
@@ -28,6 +28,6 @@ WCAvatar.expose('wc-avatar', {
     'alt',
     'initials',
     'initials-count',
-    { name: 'size', default: '40px', css: true }
+    { name: 'size', initial: '40px', css: true }
   ]
 });

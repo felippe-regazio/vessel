@@ -35,8 +35,8 @@ WCBadge.expose('wc-badge', {
     'left',
     'bottom',
     'right',
-    { name: 'bg', default: '#eeeeee' },
-    { name: 'color', default: '#444444' },
-    { name: 'size', default: '20px' },
+    { name: 'bg', initial: '#eeeeee' },
+    { name: 'color', initial: '#444444' },
+    { name: 'size', initial: '20px' },
   ]
 });

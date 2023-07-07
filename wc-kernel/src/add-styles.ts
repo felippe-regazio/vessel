@@ -12,7 +12,7 @@ export async function addStyles(options: addStylesOptions): Promise<boolean> {
   return new Promise((resolve, reject) => {
     try {
       const { origin, styles, dataId } = options;
-      
+
       const styleContent = (styles || [])
         .map((s: StaticStyle) => s.toString())
         .join(' ')

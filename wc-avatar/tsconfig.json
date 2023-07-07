@@ -1,12 +1,12 @@
 {
-  "include": [ "src/**/*", "types" ],
+  "include": [ "src/**/*", "types.d.ts" ],
   "exclude": ["node_modules", "*.scss"],
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "lib/d.ts/",
-    "outDir": "lib",    
+    "declarationDir": "dist/d.ts/",
+    "outDir": "dist",    
     "module": "CommonJS",
     "target": "ES2015",
     "sourceMap": true,

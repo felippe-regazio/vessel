@@ -68,7 +68,7 @@ export async function defineAsCustomElement(Component: any, componentName: strin
     init() {
       addStyles({
         origin: this,
-        styles: Component.styles || [],
+        styles: Component.style || [],
         dataId: this.tagName.toLocaleLowerCase(), 
       }).catch(void 0);
       

@@ -2,43 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script type="module" src="wc-kernel/lib/index.js"></script>
+  <script type="module" src="wc-avatar/dist/wc-avatar.js"></script>
 </head>
 <body>
-  <script type="module">
-    import './node_modules/wcwc/lib/index.js'
-    import './lib/wc-avatar/index.js'
-    import './lib/wc-badge/index.js'
-    import './lib/wc-chip/index.js'
-    import './lib/wc-chips/index.js'
-  </script>
-
-  <wc-chip>
-    <wc-chip-label>1</wc-chip-label>
-  </wc-chip>
-
-  <wc-chips>
-    <wc-chip>
-      <wc-chip-label>1</wc-chip-label>
-    </wc-chip>
-
-    <wc-chip>
-      <wc-chip-label>2</wc-chip-label>
-    </wc-chip>
-
-    <wc-chip>
-      <wc-chip-label>3</wc-chip-label>
-    </wc-chip>  
-  </wc-chips>
-
-  <wc-avatar
-    alt="Hello world" 
-    initials-count="2"
-    initials="Felippe Regazio" 
-    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-    alt="Oshe e agora"
-  ></wc-avatar>
+  <wc-avatar></wc-avatar>
 </body>
 </html>
