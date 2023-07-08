@@ -1,6 +1,6 @@
 import style from './style/main.scss';
 
-(class extends VesselComponent {
+(/* Avatar */ class extends VesselComponent {
   static style = [ style ];
 
   getLetters(): string {
@@ -12,11 +12,11 @@ import style from './style/main.scss';
   render() {
     return (
       <>
-        { this.props.children }
-
-        { this.props.src && <img src={this.props.src} alt={this.props.alt || ''} /> }
-
-        { this.props.initials && <span> { this.getLetters() } </span> }      
+        { 
+          (this.props.children)
+          (this.props.src && <img src={this.props.src} alt={this.props.alt || ''} />)
+          (this.props.initials && <span> { this.getLetters() } </span>)
+        }
       </>
     )
   }
