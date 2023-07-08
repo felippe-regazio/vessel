@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build",
     "publish": "npm publish --access public"
   },
-  "keywords": [],
+  "keywords": ["ui", "framework", "wc", "component"],
   "author": "Felippe Regazio",
   "license": "MIT",
   "devDependencies": {

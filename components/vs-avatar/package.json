@@ -1,0 +1,14 @@
+{
+  "name": "@vessel-ui/vs-avatar",
+  "version": "1.0.0",
+  "description": "Avatar Vessel Component",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Felippe Regazio",
+  "license": "MIT",
+  "devDependencies": {
+    "vessel": "file:../../vessel"
+  }
+}

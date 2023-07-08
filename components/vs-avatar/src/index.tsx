@@ -1,6 +1,6 @@
 import style from './style/main.scss';
 
-class WCAvatar extends VesselComponent {
+(class extends VesselComponent {
   static style = [ style ];
 
   getLetters(): string {
@@ -20,9 +20,7 @@ class WCAvatar extends VesselComponent {
       </>
     )
   }
-}
-
-WCAvatar.expose('vs-avatar', {
+}).expose('vs-avatar', {
   props: [
     'src',
     'alt',

@@ -19,11 +19,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "lib": [ "es5", "dom" ],
-    "jsx": "react",
-    "jsxFactory": "WC.h",
-    "jsxFragmentFactory": "WC.f",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true    
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "jsxFactory": "VesselComponent.h",
+    "jsxFragmentFactory": "VesselComponent.f"
   }
 }
