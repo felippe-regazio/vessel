@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vessel Browser Tests</title>
+  <!-- 
+    index.js is served from memory by webpack-dev-server
+    and mimics the lib/index.js but with most recent code.
+    the index will expose ths globals { VesselComponent, vessel } 
+    that can be accessed from the spec es6 modules to be tested.
+    The same will happen for jsx module and its exports.
+  -->
+  <script src="index.js"></script>
+  <script src="jsx.js"></script>
+</head>
+<body>
+  <h1>Vessel Browser Tests - Results:</h1>
+  <div id="tester-output"></div>
+  <script src="spec/index.mjs" type="module"></script>
+</body>
+</html>
