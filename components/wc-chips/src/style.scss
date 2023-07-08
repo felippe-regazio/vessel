@@ -1,0 +1,10 @@
+vs-chips {
+  gap: 8px;
+  display: flex;
+  padding: 4px 0;
+  flex-wrap: wrap;
+
+  vs-chip {
+    --vs-chip-size: var(--vs-chips-size) !important;
+  }
+}
