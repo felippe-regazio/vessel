@@ -1,5 +1,5 @@
 console.log(`
-Pack:
+Build:
   Bundle a Vessel component to production or development
 
 Usage:

@@ -1,9 +1,10 @@
 {
-  "name": "vs-bundler",
+  "name": "@vessel-ui/cli",
   "version": "1.0.0",
   "description": "CLI for vessel components",
   "keywords": [],
-  "author": "",
+  "author": "Felippe Regazio",
+  "bin": "./index.js",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.3",
@@ -15,7 +16,7 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "peerDependencies": {
-    "vessel": ">=1.0.0"
+  "dependencies": {
+    "webpack-dev-server": "^4.15.1"
   }
 }

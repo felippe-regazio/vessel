@@ -1,10 +1,10 @@
+const path = require('path');
 const args = process.argv.slice(2);
 const command = args[0];
-const mainHelp = './cmd/help.js';
 
 try {
   if (!command || command.startsWith('--')) {
-    return require(mainHelp);
+    return require(path.resolve(__dirname, 'cmd', 'help', 'cli'))();
   }
 
   if (command && args.includes('--help')) {
@@ -13,7 +13,10 @@ try {
 
   require(`./cmd/${command}/cli.js`)(args);
 } catch(error) {
-  console.error(`${error}\n`);
-  require(mainHelp);
+  console.error(`Fatal Error: Command not found: "${command}".\nUse --verbose option to see a detailed error output.`);
+
+  if (args.includes('--verbose')) {
+    console.error(`\n${error}`);
+  }
 }
   

@@ -5,7 +5,7 @@ module.exports = function cli_builder(args) {
   const src = args[1];
   
   if (!src) {
-    console.error('Error: You must specify the component folder to build');
+    console.error('Warning: You must specify the component folder to build');
     require('./help');
     return;
   }
@@ -16,7 +16,7 @@ module.exports = function cli_builder(args) {
 
   build({
     target,
-    clean: args.includes('--clean'),
+    clean: true,
     mode: args.includes('--production') ? 'production' : 'development'
   });
 }

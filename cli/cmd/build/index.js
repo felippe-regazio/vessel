@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const { ProvidePlugin } = require("webpack");
+const WebpackDevServer = require('webpack-dev-server');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-module.exports = function getTargetInfo(target) {
+function getTargetInfo(target) {
   return {
     path: path.resolve(target),
     name: path.basename(target),
@@ -14,21 +14,22 @@ module.exports = function getTargetInfo(target) {
   }
 }
 
-module.exports = function createWebpackConfig(info, mode) {
+function createWebpackConfig(info, mode) {
   const DEV_MODE = mode === 'development';
 
   const CONFIG = {
     mode,
     target: 'web',
     entry: {
-      [info.name]: info.src
+      index: info.src,
+      vessel: path.resolve(info.path, 'node_modules', 'vessel', 'lib', 'index.js'),
     },
     resolve: {
       symlinks: true,
       extensions: ['.ts', '.tsx', '.js'],
       modules: [ 
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(info.path, 'node_modules')
+        path.resolve(info.path, 'node_modules'),
+        path.resolve(__dirname, '..', '..', 'node_modules'),
       ]
     },
     module: {
@@ -56,21 +57,16 @@ module.exports = function createWebpackConfig(info, mode) {
         },
       ]
     },
-    plugins: [
-      new ProvidePlugin({ 
-        WC: [ 'vessel', 'WC' ]
-      }),
-    ],
     output: {
       path: info.dist,
-      filename: 'index.js',
+      filename: '[name].js',
       globalObject: 'globalThis',
       chunkFilename: `${info.name}.[chunkhash].js`,
       library: {
         type: 'umd',
       }
     },
-    externals: 'vessel'
+    externals: ['vessel']
   }
 
   if (DEV_MODE) {
@@ -93,34 +89,65 @@ module.exports = function createWebpackConfig(info, mode) {
   }
 
   CONFIG.resolveLoader = CONFIG.resolve;  
+
+  return CONFIG;
 }
 
-module.exports = function build(options) {
+function build(options) {
   const { target, mode, clean } = options;
   const info = getTargetInfo(target);
-  const CONFIG = createWebpackConfig(info, mode)
-  console.log(`${info.src} → ${info.dist}\n`);
+  const compiler = webpack(createWebpackConfig(info, mode));
+
+  console.log(`Building → ${info.path}\n`);
 
   if (clean) {
     fs.rmSync(info.dist, { recursive: true, force: true });  
   }
 
-  webpack(CONFIG, (error, stats) => {
-    if (error) { return console.error(error) }
+  if (mode === 'production') {
+    compiler.run((error, stats) => {
+      if (error) { 
+        console.error(`Compiler error: ${error}`);
+        return compiler.close(error => (error && console.error));
+      }
+  
+      const statsJson = stats.toJson('minimal');
+      const printf = arr => arr.reduce((str, item, index) => `${str}\n(${++index}) ${item.message}\n`, '');
+  
+      if (statsJson.warnings?.length) {
+        console.log('WARNINGS')
+        console.warn(printf(statsJson.warnings));
+      }
+  
+      if (statsJson.errors?.length) {
+        console.log('ERRORS')
+        console.error(printf(statsJson.errors));
+      }
+  
+      console.log(`Done. Errors (${statsJson.errorsCount}), Warns (${statsJson.warningsCount})`);
+      compiler.close(error => (error && console.error))
+    });
+  }
 
-    const statsJson = stats.toJson('minimal');
-    const printf = arr => arr.reduce((str, item, index) => `${str}\n(${++index}) ${item.message}\n`, '');
+  if (mode === 'development') {
+    const server = new WebpackDevServer({ 
+      open: true,
+      static: path.resolve(info.path, 'test')
+    }, compiler);
 
-    if (statsJson.warnings?.length) {
-      console.log('WARNINGS')
-      console.warn(printf(statsJson.warnings));
-    }
+    const runServer = async () => {
+      console.log('Starting server...');
+      await server.start();
+    };
 
-    if (statsJson.errors?.length) {
-      console.log('ERRORS')
-      console.error(printf(statsJson.errors));
-    }
-
-    console.log(`Done. Errors (${statsJson.errorsCount}), Warns (${statsJson.warningsCount})`);
-  });
+    runServer();    
+  }
 }
+
+// ---------------------------------------------------------------------
+
+module.exports = {
+  build,
+  getTargetInfo,
+  createWebpackConfig
+};
