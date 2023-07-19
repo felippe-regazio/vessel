@@ -5,22 +5,30 @@ const { ProvidePlugin } = require("webpack");
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-module.exports = function bundle(mode, target) {
-  const DEV_MODE = mode === 'development';  
-  fs.rmSync(target.dist, { recursive: true, force: true });  
+module.exports = function getTargetInfo(target) {
+  return {
+    path: path.resolve(target),
+    name: path.basename(target),
+    dist: path.resolve(target, 'dist'),
+    src: path.resolve(target, 'src', 'index.tsx'),
+  }
+}
+
+module.exports = function createWebpackConfig(info, mode) {
+  const DEV_MODE = mode === 'development';
 
   const CONFIG = {
     mode,
     target: 'web',
     entry: {
-      [target.name]: target.src
+      [info.name]: info.src
     },
     resolve: {
       symlinks: true,
       extensions: ['.ts', '.tsx', '.js'],
       modules: [ 
         path.resolve(__dirname, 'node_modules'),
-        path.resolve(target.path, 'node_modules')
+        path.resolve(info.path, 'node_modules')
       ]
     },
     module: {
@@ -54,10 +62,10 @@ module.exports = function bundle(mode, target) {
       }),
     ],
     output: {
-      path: target.dist,
+      path: info.dist,
       filename: 'index.js',
       globalObject: 'globalThis',
-      chunkFilename: `${target.name}.[chunkhash].js`,
+      chunkFilename: `${info.name}.[chunkhash].js`,
       library: {
         type: 'umd',
       }
@@ -84,9 +92,19 @@ module.exports = function bundle(mode, target) {
     });
   }
 
-  CONFIG.resolveLoader = CONFIG.resolve;
-  console.log(`${target.src} → ${target.dist}\n`);
-  
+  CONFIG.resolveLoader = CONFIG.resolve;  
+}
+
+module.exports = function build(options) {
+  const { target, mode, clean } = options;
+  const info = getTargetInfo(target);
+  const CONFIG = createWebpackConfig(info, mode)
+  console.log(`${info.src} → ${info.dist}\n`);
+
+  if (clean) {
+    fs.rmSync(info.dist, { recursive: true, force: true });  
+  }
+
   webpack(CONFIG, (error, stats) => {
     if (error) { return console.error(error) }
 
