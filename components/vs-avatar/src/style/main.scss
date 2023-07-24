@@ -3,18 +3,19 @@ vs-avatar {
     box-sizing: border-box;
   }
 
+  aspect-ratio: 1 / 1;
   display: flex;
   position: relative;
   font-family: sans-serif;
-  height: var(--vs-avatar-size);
   width: var(--vs-avatar-size);
   align-items: center;
   justify-content: center;
   border-radius: 100%;
   overflow: hidden;
-  background-color: var(--vs-avatar-bg, #eeeeee);
+  background-color: #eeeeee;
   font-size: calc(var(--vs-avatar-size) / 2);
   color: rgba(100, 100, 100, .8);
+  text-transform: uppercase;
 
   img {
     height: 100%;

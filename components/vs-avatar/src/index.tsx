@@ -3,27 +3,23 @@ import style from './style/main.scss';
 (/* Avatar */ class extends VesselComponent {
   static style = [ style ];
 
-  getLetters(): string {
-    const initials = this.props.initials.split(' ').map((word: string) => word.substring(0, 1));
-    const initialsCount = Number(this.props['initials-count']) || initials.length;
-    return initials.splice(0, initialsCount).join('');
+  initial(): string {
+    return (this.props.initial || '')[0];
   }
 
   render() {
     return (
       <>
-        {this.props.children}
-        {this.props.src && <img src={this.props.src} alt={this.props.alt || ''} />}
-        {this.props.initials && <span> { this.getLetters() } </span>}
+        {this.props.src && <img src={this.props.src} alt={this.props.title} />}
+        {this.props.initial && <span>{this.initial()}</span>}
       </>
     )
   }
 }).expose('vs-avatar', {
   props: [
     'src',
-    'alt',
-    'initials',
-    'initials-count',
+    'title',
+    'initial',
     { name: 'size', initial: '40px', css: true }
   ]
 });

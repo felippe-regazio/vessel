@@ -1,7 +1,7 @@
 import style from './style.scss';
 
 class WCBadge extends VesselComponent {
-  static styles = [ style ];
+  static style = [ style ];
   
   updateLocalStyle() {
     const absolute = ['top', 'left', 'bottom', 'right'].some((prop: string) => this.props[prop]);

@@ -1,4 +1,4 @@
-import '../vs-chip';
+import '../../vs-chip/src';
 import style from './style.scss';
 
 class WCChips extends VesselComponent {  

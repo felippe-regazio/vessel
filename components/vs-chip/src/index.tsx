@@ -1,7 +1,7 @@
 import style from './style.scss';
 
 class WCChip extends VesselComponent {
-  static styles = [ style ];
+  static style = [ style ];
 
   render() {
     return this.props.children;

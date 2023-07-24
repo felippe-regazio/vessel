@@ -4,7 +4,8 @@
   "description": "Avatar Web Component",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vs pack .",
+    "serve": "vs pack --development ."
   },
   "author": "Felippe Regazio",
   "license": "MIT",

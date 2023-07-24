@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function getTargetInfo(target) {
   return {
@@ -20,9 +21,8 @@ function createWebpackConfig(info, mode) {
   const CONFIG = {
     mode,
     target: 'web',
-    entry: {
-      index: info.src,
-      vessel: path.resolve(info.path, 'node_modules', 'vessel', 'lib', 'index.js'),
+    entry: { 
+      index: info.src 
     },
     resolve: {
       symlinks: true,
@@ -71,8 +71,18 @@ function createWebpackConfig(info, mode) {
 
   if (DEV_MODE) {
     Object.assign(CONFIG, {
-      devtool: 'source-map'
+      devtool: 'source-map',
+      plugins: [
+        new HtmlWebpackPlugin({
+          title: info.name,
+          chunksSortMode: 'manual',
+          chunks: ['vessel', 'index'],
+          template: `${info.path}/preview/index.ejs`
+        })
+      ]
     });
+
+    CONFIG.entry.vessel = path.resolve(info.path, 'node_modules', 'vessel', 'lib', 'index.js');
   }
 
   if (!DEV_MODE) {
@@ -88,17 +98,16 @@ function createWebpackConfig(info, mode) {
     });
   }
 
-  CONFIG.resolveLoader = CONFIG.resolve;  
+  CONFIG.resolveLoader = CONFIG.resolve;
 
   return CONFIG;
 }
 
-function build(options) {
+function pack(options) {
   const { target, mode, clean } = options;
   const info = getTargetInfo(target);
   const compiler = webpack(createWebpackConfig(info, mode));
-
-  console.log(`Building → ${info.path}\n`);
+  console.log(`Vessel ${mode === 'development' ? 'Development' : 'Build'} → ${info.path}\n`);
 
   if (clean) {
     fs.rmSync(info.dist, { recursive: true, force: true });  
@@ -130,9 +139,9 @@ function build(options) {
   }
 
   if (mode === 'development') {
-    const server = new WebpackDevServer({ 
+    const server = new WebpackDevServer({
       open: true,
-      static: path.resolve(info.path, 'test')
+      static: `${info.path}/preview/`
     }, compiler);
 
     const runServer = async () => {
@@ -140,14 +149,14 @@ function build(options) {
       await server.start();
     };
 
-    runServer();    
+    return runServer();
   }
 }
 
 // ---------------------------------------------------------------------
 
 module.exports = {
-  build,
+  pack,
   getTargetInfo,
   createWebpackConfig
 };
