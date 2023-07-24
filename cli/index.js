@@ -13,10 +13,6 @@ try {
 
   require(`./cmd/${command}/cli.js`)(args);
 } catch(error) {
-  console.error(`Fatal Error: Command not found: "${command}".\nUse --verbose option to see a detailed error output.`);
-
-  if (args.includes('--verbose')) {
-    console.error(`\n${error}`);
-  }
+  console.error(error);
 }
   

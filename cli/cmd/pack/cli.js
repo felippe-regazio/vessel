@@ -3,7 +3,7 @@ const { pack } = require('./index');
 
 module.exports = function cmd_pack(args) {
   const src = args[1];
-  
+
   if (!src) {
     console.error('Warning: You must specify the component folder to pack');
     require('./help');

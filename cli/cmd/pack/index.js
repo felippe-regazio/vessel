@@ -5,6 +5,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 function getTargetInfo(target) {
   return {
@@ -57,6 +58,30 @@ function createWebpackConfig(info, mode) {
         },
       ]
     },
+    plugins: [
+      new ESLintPlugin({
+        fix: false,
+        cache: !DEV_MODE,                
+        context: info.src,
+        useEslintrc: false,
+        failOnError: !DEV_MODE,
+        extensions: ['js', 'ts'],
+        lintDirtyModulesOnly: DEV_MODE,
+        overrideConfig: {
+          root: true,
+          parser: "@typescript-eslint/parser",
+          plugins: ["@typescript-eslint/eslint-plugin"],
+          extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+          parserOptions: { 
+            ecmaFeatures: { 
+              jsx: true,
+            }, 
+
+            warnOnUnsupportedTypeScriptVersion: true, 
+          },
+        }
+      })
+    ],
     output: {
       path: info.dist,
       filename: '[name].js',
@@ -73,6 +98,8 @@ function createWebpackConfig(info, mode) {
     Object.assign(CONFIG, {
       devtool: 'source-map',
       plugins: [
+        ...CONFIG.plugins,
+
         new HtmlWebpackPlugin({
           title: info.name,
           chunksSortMode: 'manual',
@@ -133,7 +160,7 @@ function pack(options) {
         console.error(printf(statsJson.errors));
       }
   
-      console.log(`Done. Errors (${statsJson.errorsCount}), Warns (${statsJson.warningsCount})`);
+      console.log(`Errors (${statsJson.errorsCount}), Warns (${statsJson.warningsCount})`);
       compiler.close(error => (error && console.error))
     });
   }
