@@ -67,18 +67,47 @@ function createWebpackConfig(info, mode) {
         failOnError: !DEV_MODE,
         extensions: ['js', 'ts'],
         lintDirtyModulesOnly: DEV_MODE,
+        eslintPath: path.resolve(__dirname, '..', '..', 'node_modules', 'eslint'),
         overrideConfig: {
           root: true,
+          plugins: ["@typescript-eslint"],
           parser: "@typescript-eslint/parser",
-          plugins: ["@typescript-eslint/eslint-plugin"],
-          extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
           parserOptions: { 
             ecmaFeatures: { 
               jsx: true,
             }, 
-
-            warnOnUnsupportedTypeScriptVersion: true, 
+            
+            warnOnUnsupportedTypeScriptVersion: true,
           },
+          extends: [
+            "eslint:recommended", 
+            "plugin:@typescript-eslint/recommended"
+          ],
+          rules: {
+            // warn
+            'camelcase': 1,
+            'eqeqeq': 1,
+            'no-console': 1,
+            'no-unneeded-ternary': 1,
+            'prefer-const': 1,
+            'spaced-comment': 1,
+            'semi': 1,
+            // error
+            'no-trailing-spaces': 2,
+            'no-duplicate-imports': 2,
+            'no-self-compare': 2,
+            'no-use-before-define': 2,
+            'curly': 2,
+            'no-eval': 2,
+            'no-implied-eval': 2,
+            'no-return-await': 2,
+            'no-undefined': 2,
+            'max-classes-per-file': ['error', 1],
+            'one-var-declaration-per-line': 2,
+            'yoda': 2,
+            'arrow-spacing': 2,
+            'brace-style': 2,
+          }
         }
       })
     ],
@@ -133,6 +162,21 @@ function createWebpackConfig(info, mode) {
 function pack(options) {
   const { target, mode, clean } = options;
   const info = getTargetInfo(target);
+
+  if (!fs.existsSync(info.path)) {
+    console.error(`Error: Target not found: "${info.path}"`);
+    return false;
+  }
+
+  try {
+    process.chdir(__dirname);
+    console.log('Running commands from: ', process.cwd());
+  }
+  catch (err) {
+    console.log('Error: chdir: ' + err);
+    return false;
+  }
+
   const compiler = webpack(createWebpackConfig(info, mode));
   console.log(`Vessel ${mode === 'development' ? 'Development' : 'Build'} → ${info.path}\n`);
 
